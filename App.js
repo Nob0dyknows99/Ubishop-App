@@ -1,20 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons'; 
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// Importar las pantallas desde la carpeta Screens
+import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen';
+import ProfileScreen from './screens/ProfileScreen';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = 'home'; // Nombre del ícono para la pestaña "Home"
+            } else if (route.name === 'Buscar') {
+              iconName = 'search'; // Ícono para la pestaña "Buscar"
+            } else if (route.name === 'Mi Perfil') {
+              iconName = 'person'; // Ícono para la pestaña "Mi Perfil"
+            }
+
+            // Devolver el componente de Ionicons con el nombre del ícono adecuado
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'blue',  // Color de los íconos cuando la pestaña está activa
+          tabBarInactiveTintColor: 'gray', // Color de los íconos cuando la pestaña está inactiva
+          tabBarStyle: [{ display: 'flex' }],
+          headerTitle: 'UBISHOP',  // Título del encabezado
+          headerStyle: {
+            backgroundColor: '#2C64F1',  // Fondo azul del encabezado
+            height: 80,
+          },
+          headerTintColor: '#fff',  // Texto en blanco
+          headerTitleAlign: 'center', // Alinea el título al centro
+          headerTitleStyle: {
+            fontFamily: 'inter',
+            fontWeight: 'bold',  // Negrita para el texto "UBISHOP"
+            fontSize: 35,        // Puedes ajustar el tamaño de la fuente
+          },
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Buscar" component={SearchScreen} />
+        <Tab.Screen name="Mi Perfil" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
