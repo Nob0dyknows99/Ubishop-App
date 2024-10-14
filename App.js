@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Importar las pantallas desde la carpeta Screens
 import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import ProductsScreen from './screens/ProductsScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,8 +20,8 @@ export default function App() {
 
             if (route.name === 'Home') {
               iconName = 'home'; // Nombre del ícono para la pestaña "Home"
-            } else if (route.name === 'Buscar') {
-              iconName = 'search'; // Ícono para la pestaña "Buscar"
+            } else if (route.name === 'Productos') {
+              iconName = 'pricetags'; // Ícono para la pestaña "Productos"
             } else if (route.name === 'Mi Perfil') {
               iconName = 'person'; // Ícono para la pestaña "Mi Perfil"
             }
@@ -47,8 +47,8 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Buscar" component={SearchScreen} />
-        <Tab.Screen name="Mi Perfil" component={ProfileScreen} />
+        <Tab.Screen name="Productos" component={ProductsScreen} />
+        <Tab.Screen name="Mi Perfil" component={LoginScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
