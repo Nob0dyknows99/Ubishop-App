@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   const handleLogin = () => {
     // Lógica para iniciar sesión
@@ -42,7 +44,7 @@ const LoginScreen = () => {
       <Text style={styles.orText}>o</Text>
 
       {/* Botón para registrarse que navega a SignupScreen */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
         <Text style={styles.registerText}>Registrarse</Text>
       </TouchableOpacity>
     </View>
